@@ -1,0 +1,71 @@
+﻿@model ManageMyProjects.Models.Phase
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Phase</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="PhaseName" class="control-label"></label>
+                <input asp-for="PhaseName" class="form-control" />
+                <span asp-validation-for="PhaseName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PhaseReview" class="control-label"></label>
+                <input asp-for="PhaseReview" class="form-control" />
+                <span asp-validation-for="PhaseReview" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PhaseStartDatePlanned" class="control-label"></label>
+                <input asp-for="PhaseStartDatePlanned" class="form-control" />
+                <span asp-validation-for="PhaseStartDatePlanned" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PhaseEndDatePlanned" class="control-label"></label>
+                <input asp-for="PhaseEndDatePlanned" class="form-control" />
+                <span asp-validation-for="PhaseEndDatePlanned" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PhaseStartDateRealized" class="control-label"></label>
+                <input asp-for="PhaseStartDateRealized" class="form-control" />
+                <span asp-validation-for="PhaseStartDateRealized" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PhaseEndDateRealized" class="control-label"></label>
+                <input asp-for="PhaseEndDateRealized" class="form-control" />
+                <span asp-validation-for="PhaseEndDateRealized" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PhaseProgress" class="control-label"></label>
+                <input asp-for="PhaseProgress" class="form-control" />
+                <span asp-validation-for="PhaseProgress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProjectId" class="control-label"></label>
+                <select asp-for="ProjectId" class ="form-control" asp-items="ViewBag.ProjectId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="StatusId" class="control-label"></label>
+                <select asp-for="StatusId" class ="form-control" asp-items="ViewBag.StatusId"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
