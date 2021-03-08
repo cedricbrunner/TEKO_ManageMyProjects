@@ -12,8 +12,8 @@ namespace ManageMyProjects.Models
         public DateTime ProjectApprovalDate { get; set; }
         public DateTime ProjectStartDatePlanned { get; set; }
         public DateTime ProjectEndDatePlanned { get; set; }
-        public DateTime ProjectStartDateRealized { get; set; }
-        public DateTime ProjectEndDateRealized { get; set; }
+        public DateTime? ProjectStartDateRealized { get; set; }
+        public DateTime? ProjectEndDateRealized { get; set; }
         public int ProjectProgress { get; set; }
 
 

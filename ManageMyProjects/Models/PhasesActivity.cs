@@ -11,8 +11,8 @@ namespace ManageMyProjects.Models
         public int PhaseActivityProgress { get; set; }
         public DateTime PhaseActivityStartDatePlanned { get; set; }
         public DateTime PhaseActivityEndDatePlanned { get; set; }
-        public DateTime PhaseActivityStartDateRealized { get; set; }
-        public DateTime PhaseActivityEndDateRealized { get; set; }
+        public DateTime? PhaseActivityStartDateRealized { get; set; }
+        public DateTime? PhaseActivityEndDateRealized { get; set; }
         public int EmployeeId { get; set; }
         public Employee Employee { get; set; }
 

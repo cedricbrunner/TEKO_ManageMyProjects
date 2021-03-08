@@ -51,10 +51,10 @@ namespace ManageMyProjects.Controllers
         // GET: Projects/Create
         public IActionResult Create()
         {
-            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Id");
-            ViewData["PriorityId"] = new SelectList(_context.Priorities, "Id", "Id");
-            ViewData["ProcedureModelId"] = new SelectList(_context.ProcedureModels, "Id", "Id");
-            ViewData["StatusId"] = new SelectList(_context.Set<Status>(), "Id", "Id");
+            ViewData["EmployeeId"] = new SelectList(_context.Employees, "EmployeeFirstName", "EmployeeFirstName");
+            ViewData["PriorityId"] = new SelectList(_context.Priorities, "PriorityType", "PriorityType");
+            ViewData["ProcedureModelId"] = new SelectList(_context.ProcedureModels, "ProcedureModelName", "ProcedureModelName");
+            ViewData["StatusId"] = new SelectList(_context.Set<Status>(), "StatusType", "StatusType");
             return View();
         }
 
@@ -79,26 +79,22 @@ namespace ManageMyProjects.Controllers
                         new Phase()
                         {
                             ProjectId = project.Id,
-                            PhaseName = "Initialisierung",
-                            //MilestoneName = "Milestone Initialisierung"
+                            PhaseName = "Initialisierung",                            
                         },
                           new Phase()
                           {
                               ProjectId = project.Id,
-                              PhaseName = "Konzept"
-                              //MilestoneName = "Milestone Konzept"
+                              PhaseName = "Konzept"                              
                           },
                             new Phase()
                             {
                                 ProjectId = project.Id,
-                                PhaseName = "Realisierung"
-                                //MilestoneName = "Milestone Realisierung"
+                                PhaseName = "Realisierung"                                
                             },
                             new Phase()
                             {
                                 ProjectId = project.Id,
-                                PhaseName = "Einführung"
-                                //MilestoneName = "Milestone Einführung"
+                                PhaseName = "Einführung"                    
                             }
                         }
                     );
@@ -113,39 +109,32 @@ namespace ManageMyProjects.Controllers
 
                         {
                             ProjectId = project.Id,
-                            PhaseName = "Systemanforderungsanalyse"
-                            //MilestoneName = "Milestone Systemanforderungsanalyse"
-
+                            PhaseName = "Systemanforderungsanalyse"                            
                         },
                           new Phase()
                           {
                               ProjectId = project.Id,
-                              PhaseName = "System-Architektur und Entwurf"
-                              //MilestoneName = "Milestone System-Architektur und Entwurf"
+                              PhaseName = "System-Architektur und Entwurf"                            
                           },
                             new Phase()
                             {
                                 ProjectId = project.Id,
-                                PhaseName = "Software Architektur und EntwurfEntwurf"
-                                //MilestoneName = "Milestone Software Architektur und EntwurfEntwurf"
+                                PhaseName = "Software Architektur und EntwurfEntwurf"                               
                             },
                             new Phase()
                             {
                                 ProjectId = project.Id,
-                                PhaseName = "Unit und Integrations Test"
-                                //MilestoneName = "Milestone Unit und Integrations Test"
+                                PhaseName = "Unit und Integrations Test"                               
                             },
                             new Phase()
                             {
                                 ProjectId = project.Id,
-                                PhaseName = "System Integration"
-                                //MilestoneName = "Milestone System Integration"
+                                PhaseName = "System Integration"                               
                             },
                             new Phase()
                             {
                                 ProjectId = project.Id,
-                                PhaseName = "Abnahme und Nutzung"
-                                //MilestoneName = "Milestone Abnahme und Nutzung"
+                                PhaseName = "Abnahme und Nutzung"                               
                             }
                         }
                       );
@@ -157,27 +146,22 @@ namespace ManageMyProjects.Controllers
                         new Phase()
                         {
                             ProjectId = project.Id,
-                            PhaseName = "Inception"
-                            //MilestoneName = "Milestone Inception"
+                            PhaseName = "Inception"                           
                         },
                           new Phase()
                           {
                               ProjectId = project.Id,
-                              PhaseName = "Elaboration"
-                              //MilestoneName = "Milestone Elaboration"
-
+                              PhaseName = "Elaboration"                            
                           },
                             new Phase()
                             {
                                 ProjectId = project.Id,
-                                PhaseName = "Construction"
-                                //MilestoneName = "Milestone Construction"
+                                PhaseName = "Construction"                               
                             },
                             new Phase()
                             {
                                 ProjectId = project.Id,
                                 PhaseName = "Transition"
-                                //MilestoneName = "Milestone Transition"
                             }
                         }
                       );
@@ -214,12 +198,14 @@ namespace ManageMyProjects.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Id", project.EmployeeId);
-            ViewData["PriorityId"] = new SelectList(_context.Priorities, "Id", "Id", project.PriorityId);
-            ViewData["ProcedureModelId"] = new SelectList(_context.ProcedureModels, "Id", "Id", project.ProcedureModelId);
-            ViewData["StatusId"] = new SelectList(_context.Set<Status>(), "Id", "Id", project.StatusId);
+            ViewData["EmployeeId"] = new SelectList(_context.Employees, "EmployeeFirstName", "EmployeeFirstName", project.EmployeeId);
+            ViewData["PriorityId"] = new SelectList(_context.Priorities, "PriorityType", "PriorityType", project.PriorityId);
+            ViewData["ProcedureModelId"] = new SelectList(_context.ProcedureModels, "ProcedureModelName", "ProcedureModelName", project.ProcedureModelId);
+            ViewData["StatusId"] = new SelectList(_context.Set<Status>(), "StatusType", "StatusType", project.StatusId);
             return View(project);
         }
+
+           
 
         // GET: Projects/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -234,13 +220,15 @@ namespace ManageMyProjects.Controllers
             {
                 return NotFound();
             }
-            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Id", project.EmployeeId);
-            ViewData["PriorityId"] = new SelectList(_context.Priorities, "Id", "Id", project.PriorityId);
-            ViewData["ProcedureModelId"] = new SelectList(_context.ProcedureModels, "Id", "Id", project.ProcedureModelId);
-            ViewData["StatusId"] = new SelectList(_context.Set<Status>(), "Id", "Id", project.StatusId);
+            ViewData["EmployeeId"] = new SelectList(_context.Employees, "EmployeeFirstName", "EmployeeFirstName", project.EmployeeId);
+            ViewData["PriorityId"] = new SelectList(_context.Priorities, "PriorityType", "PriorityType", project.PriorityId);
+            ViewData["ProcedureModelId"] = new SelectList(_context.ProcedureModels, "ProcedureModelName", "ProcedureModelName", project.ProcedureModelId);
+            ViewData["StatusId"] = new SelectList(_context.Set<Status>(), "StatusType", "StatusType", project.StatusId);
             return View(project);
         }
 
+
+      
         // POST: Projects/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -273,10 +261,10 @@ namespace ManageMyProjects.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Id", project.EmployeeId);
-            ViewData["PriorityId"] = new SelectList(_context.Priorities, "Id", "Id", project.PriorityId);
-            ViewData["ProcedureModelId"] = new SelectList(_context.ProcedureModels, "Id", "Id", project.ProcedureModelId);
-            ViewData["StatusId"] = new SelectList(_context.Set<Status>(), "Id", "Id", project.StatusId);
+            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "EmployeeFirstName", project.EmployeeId);
+            ViewData["PriorityId"] = new SelectList(_context.Priorities, "Id", "PriorityType", project.PriorityId);
+            ViewData["ProcedureModelId"] = new SelectList(_context.ProcedureModels, "Id", "ProcedureModelName", project.ProcedureModelId);
+            ViewData["StatusId"] = new SelectList(_context.Set<Status>(), "Id", "StatusType", project.StatusId);
             return View(project);
         }
 
