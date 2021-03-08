@@ -4,14 +4,16 @@ using ManageMyProjects.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ManageMyProjects.Migrations
 {
     [DbContext(typeof(ManageMyProjectDbContext))]
-    partial class ManageMyProjectDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210308113631_phase_activity")]
+    partial class phase_activity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -192,9 +194,6 @@ namespace ManageMyProjects.Migrations
 
                     b.Property<int>("EmployeeId")
                         .HasColumnType("int");
-
-                    b.Property<byte[]>("FileContent")
-                        .HasColumnType("varbinary(max)");
 
                     b.Property<DateTime>("PhaseActivityEndDatePlanned")
                         .HasColumnType("datetime2");

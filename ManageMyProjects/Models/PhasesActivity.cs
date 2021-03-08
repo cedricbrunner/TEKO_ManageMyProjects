@@ -22,11 +22,9 @@ namespace ManageMyProjects.Models
         public int? StatusId { get; set; }
         public Status Status { get; set; }
 
+        public int? ProjectId { get; set; }
+        public Project Project { get; set; }
 
-
-
-
-
-
+        public byte[]? FileContent { get; set; }
     }
 }

@@ -1,10 +1,13 @@
-﻿using System;
+﻿using ManageMyProjects.ModelBinder;
+using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace ManageMyProjects.Models
 {
+    //[ModelBinder(BinderType = typeof(FormDataJsonBinder))]
     public class Phase : BaseEntity
     {
         public string PhaseName { get; set; }
@@ -21,6 +24,6 @@ namespace ManageMyProjects.Models
         public int? StatusId { get; set; }
         public Status Status { get; set; }
 
-
+        
     }
 }

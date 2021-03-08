@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using ManageMyProjects.ModelBinder;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ManageMyProjects
 {
@@ -22,7 +24,12 @@ namespace ManageMyProjects
         {
             services.AddDbContext<ManageMyProjectDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
+           /*services.AddMvc(options =>
+            {
+                // add custom binder to beginning of collection
+                options.ModelBinderProviders.Insert(0, new PhaseBinderProvider());
+            })
+        .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);*/
             services.AddControllersWithViews();
         }
 
