@@ -55,7 +55,7 @@ namespace ManageMyProjects.Controllers
         {
             ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "EmployeeFirstName");
             ViewData["PhaseId"] = new SelectList(_context.Phases, "Id", "PhaseName");
-            //ViewData["ProjectId"] = new SelectList(_context.Projects, "Id", "ProjectTitle");
+            ViewData["ProjectId"] = new SelectList(_context.Projects, "Id", "ProjectTitle");
             ViewData["StatusId"] = new SelectList(_context.Status, "Id", "StatusType");
             return View();
         }
@@ -90,12 +90,10 @@ namespace ManageMyProjects.Controllers
             }
             ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "EmployeeFirstName", phasesActivity.EmployeeId);
             ViewData["PhaseId"] = new SelectList(_context.Phases, "Id", "PhaseName", phasesActivity.PhaseId);
-            //ViewData["ProjectId"] = new SelectList(_context.Projects, "Id", "ProjectTitle", phasesActivity.ProjectId);
+            ViewData["ProjectId"] = new SelectList(_context.Projects, "Id", "ProjectTitle", phasesActivity.ProjectId);
             ViewData["StatusId"] = new SelectList(_context.Status, "Id", "StatusType", phasesActivity.StatusId);
             return View(phasesActivity);
         }
-
-
 
         // GET: PhasesActivities/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -112,7 +110,7 @@ namespace ManageMyProjects.Controllers
             }
             ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "EmployeeFirstName", phasesActivity.EmployeeId);
             ViewData["PhaseId"] = new SelectList(_context.Phases, "Id", "PhaseName", phasesActivity.PhaseId);
-            //ViewData["ProjectId"] = new SelectList(_context.Projects, "Id", "ProjectTitle", phasesActivity.ProjectId);
+            ViewData["ProjectId"] = new SelectList(_context.Projects, "Id", "ProjectTitle", phasesActivity.ProjectId);
             ViewData["StatusId"] = new SelectList(_context.Status, "Id", "StatusType", phasesActivity.StatusId);
             return View(phasesActivity);
         }
@@ -152,7 +150,7 @@ namespace ManageMyProjects.Controllers
             }
             ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "EmployeeFirstName", phasesActivity.EmployeeId);
             ViewData["PhaseId"] = new SelectList(_context.Phases, "Id", "PhaseName", phasesActivity.PhaseId);
-           // ViewData["ProjectId"] = new SelectList(_context.Projects, "Id", "ProjectTitle", phasesActivity.ProjectId);
+            ViewData["ProjectId"] = new SelectList(_context.Projects, "Id", "ProjectTitle", phasesActivity.ProjectId);
             ViewData["StatusId"] = new SelectList(_context.Status, "Id", "StatusType", phasesActivity.StatusId);
             return View(phasesActivity);
         }
