@@ -79,16 +79,16 @@
                 @Html.DisplayFor(modelItem => item.ProjectProgress)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Employee.Id)
+                @Html.DisplayFor(modelItem => item.Employee.EmployeeFirstName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Priority.Id)
+                @Html.DisplayFor(modelItem => item.Priority.PriorityType)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ProcedureModel.Id)
+                @Html.DisplayFor(modelItem => item.ProcedureModel.ProcedureModelName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Status.Id)
+                @Html.DisplayFor(modelItem => item.Status.StatusType)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

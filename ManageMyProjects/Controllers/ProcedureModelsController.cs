@@ -54,7 +54,7 @@ namespace ManageMyProjects.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProcedureModelName,Id")] ProcedureModel procedureModel)
+        public async Task<IActionResult> Create([Bind("ProcedureModelName,ProcedureModelName")] ProcedureModel procedureModel)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace ManageMyProjects.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ProcedureModelName,Id")] ProcedureModel procedureModel)
+        public async Task<IActionResult> Edit(int id, [Bind("ProcedureModelName,ProcedureModelName")] ProcedureModel procedureModel)
         {
             if (id != procedureModel.Id)
             {

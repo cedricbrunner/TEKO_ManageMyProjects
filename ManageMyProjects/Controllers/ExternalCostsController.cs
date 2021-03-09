@@ -48,7 +48,7 @@ namespace ManageMyProjects.Controllers
         // GET: ExternalCosts/Create
         public IActionResult Create()
         {
-            ViewData["PhaseActivityId"] = new SelectList(_context.PhasesActivities, "Id", "Id");
+            ViewData["PhaseActivityId"] = new SelectList(_context.PhasesActivities, "Id", "PhaseActivityName");
             return View();
         }
 
@@ -65,7 +65,7 @@ namespace ManageMyProjects.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PhaseActivityId"] = new SelectList(_context.PhasesActivities, "Id", "Id", externalCost.PhaseActivityId);
+            ViewData["PhaseActivityId"] = new SelectList(_context.PhasesActivities, "Id", "PhaseActivityName", externalCost.PhaseActivityId);
             return View(externalCost);
         }
 
@@ -118,7 +118,7 @@ namespace ManageMyProjects.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PhaseActivityId"] = new SelectList(_context.PhasesActivities, "Id", "Id", externalCost.PhaseActivityId);
+            ViewData["PhaseActivityId"] = new SelectList(_context.PhasesActivities, "Id", "PhaseActivityName", externalCost.PhaseActivityId);
             return View(externalCost);
         }
 

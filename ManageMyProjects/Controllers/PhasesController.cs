@@ -49,8 +49,8 @@ namespace ManageMyProjects.Controllers
         // GET: Phases/Create
         public IActionResult Create()
         {
-            ViewData["ProjectId"] = new SelectList(_context.Projects, "Id", "Id");
-            ViewData["StatusId"] = new SelectList(_context.Status, "Id", "Id");
+            ViewData["ProjectId"] = new SelectList(_context.Projects, "Id", "ProjectTitle");
+            ViewData["StatusId"] = new SelectList(_context.Status, "Id", "StatusType");
             return View();
         }
 
@@ -67,8 +67,8 @@ namespace ManageMyProjects.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ProjectId"] = new SelectList(_context.Projects, "Id", "Id", phase.ProjectId);
-            ViewData["StatusId"] = new SelectList(_context.Status, "Id", "Id", phase.StatusId);
+            ViewData["ProjectId"] = new SelectList(_context.Projects, "Id", "ProjectTitle", phase.ProjectId);
+            ViewData["StatusId"] = new SelectList(_context.Status, "Id", "StatusType", phase.StatusId);
             return View(phase);
         }
 
@@ -85,8 +85,8 @@ namespace ManageMyProjects.Controllers
             {
                 return NotFound();
             }
-            ViewData["ProjectId"] = new SelectList(_context.Projects, "Id", "Id", phase.ProjectId);
-            ViewData["StatusId"] = new SelectList(_context.Status, "Id", "Id", phase.StatusId);
+            ViewData["ProjectId"] = new SelectList(_context.Projects, "Id", "ProjectTitle", phase.ProjectId);
+            ViewData["StatusId"] = new SelectList(_context.Status, "Id", "StatusType", phase.StatusId);
             return View(phase);
         }
 
@@ -122,8 +122,8 @@ namespace ManageMyProjects.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ProjectId"] = new SelectList(_context.Projects, "Id", "Id", phase.ProjectId);
-            ViewData["StatusId"] = new SelectList(_context.Status, "Id", "Id", phase.StatusId);
+            ViewData["ProjectId"] = new SelectList(_context.Projects, "Id", "ProjectTitle", phase.ProjectId);
+            ViewData["StatusId"] = new SelectList(_context.Status, "Id", "StatusType", phase.StatusId);
             return View(phase);
         }
 

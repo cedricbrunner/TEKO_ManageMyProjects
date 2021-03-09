@@ -34,15 +34,16 @@
                 @Html.DisplayNameFor(model => model.Employee)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Phase)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Status)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Phase)
+            </th>
+
+            <th>
                 @Html.DisplayNameFor(model => model.Project)
             </th>
-           
+
             <th></th>
         </tr>
     </thead>
@@ -68,18 +69,20 @@
                 @Html.DisplayFor(modelItem => item.PhaseActivityEndDateRealized)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Employee.Id)
+                @Html.DisplayFor(modelItem => item.Employee.EmployeeFirstName)
+                @Html.DisplayFor(modelItem => item.Employee.EmployeeLastName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Phase.Id)
+                @Html.DisplayFor(modelItem => item.Status.StatusType)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Status.Id)
+                @Html.DisplayFor(modelItem => item.Phase.PhaseName)
             </td>
+
             <td>
-                @Html.DisplayFor(modelItem => item.Project.Id)
+                @Html.DisplayFor(modelItem => item.Project.ProjectTitle)
             </td>
-           
+
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
