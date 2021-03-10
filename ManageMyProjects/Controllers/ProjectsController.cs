@@ -51,10 +51,10 @@ namespace ManageMyProjects.Controllers
         // GET: Projects/Create
         public IActionResult Create()
         {
-            ViewData["EmployeeId"] = new SelectList(_context.Employees, "EmployeeFirstName", "EmployeeFirstName");
-            ViewData["PriorityId"] = new SelectList(_context.Priorities, "PriorityType", "PriorityType");
-            ViewData["ProcedureModelId"] = new SelectList(_context.ProcedureModels, "ProcedureModelName", "ProcedureModelName");
-            ViewData["StatusId"] = new SelectList(_context.Set<Status>(), "StatusType", "StatusType");
+            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "EmployeeFirstName");
+            ViewData["PriorityId"] = new SelectList(_context.Priorities, "Id", "PriorityType");
+            ViewData["ProcedureModelId"] = new SelectList(_context.ProcedureModels, "Id", "ProcedureModelName");
+            ViewData["StatusId"] = new SelectList(_context.Set<Status>(), "Id", "StatusType");
             return View();
         }
 
@@ -182,7 +182,7 @@ namespace ManageMyProjects.Controllers
                                 PhaseId = currentPhase.Id,
                                 ProjectId = project.Id,
                                 MilestoneDate = DateTime.Now,
-                                MilestoneName = "Initial Meilenstein - " + currentPhase.PhaseName
+                                MilestoneName = "Milestone - " + currentPhase.PhaseName
                             });
 
                             
@@ -198,10 +198,10 @@ namespace ManageMyProjects.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["EmployeeId"] = new SelectList(_context.Employees, "EmployeeFirstName", "EmployeeFirstName", project.EmployeeId);
-            ViewData["PriorityId"] = new SelectList(_context.Priorities, "PriorityType", "PriorityType", project.PriorityId);
-            ViewData["ProcedureModelId"] = new SelectList(_context.ProcedureModels, "ProcedureModelName", "ProcedureModelName", project.ProcedureModelId);
-            ViewData["StatusId"] = new SelectList(_context.Set<Status>(), "StatusType", "StatusType", project.StatusId);
+            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "EmployeeFirstName", project.EmployeeId);
+            ViewData["PriorityId"] = new SelectList(_context.Priorities, "Id", "PriorityType", project.PriorityId);
+            ViewData["ProcedureModelId"] = new SelectList(_context.ProcedureModels, "Id", "ProcedureModelName", project.ProcedureModelId);
+            ViewData["StatusId"] = new SelectList(_context.Set<Status>(), "Id", "StatusType", project.StatusId);
             return View(project);
         }
 
@@ -220,10 +220,10 @@ namespace ManageMyProjects.Controllers
             {
                 return NotFound();
             }
-            ViewData["EmployeeId"] = new SelectList(_context.Employees, "EmployeeFirstName", "EmployeeFirstName", project.EmployeeId);
-            ViewData["PriorityId"] = new SelectList(_context.Priorities, "PriorityType", "PriorityType", project.PriorityId);
-            ViewData["ProcedureModelId"] = new SelectList(_context.ProcedureModels, "ProcedureModelName", "ProcedureModelName", project.ProcedureModelId);
-            ViewData["StatusId"] = new SelectList(_context.Set<Status>(), "StatusType", "StatusType", project.StatusId);
+            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "EmployeeFirstName", project.EmployeeId);
+            ViewData["PriorityId"] = new SelectList(_context.Priorities, "Id", "PriorityType", project.PriorityId);
+            ViewData["ProcedureModelId"] = new SelectList(_context.ProcedureModels, "Id", "ProcedureModelName", project.ProcedureModelId);
+            ViewData["StatusId"] = new SelectList(_context.Set<Status>(), "Id", "StatusType", project.StatusId);
             return View(project);
         }
 
