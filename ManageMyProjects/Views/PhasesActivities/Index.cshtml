@@ -19,12 +19,6 @@
                 @Html.DisplayNameFor(model => model.PhaseActivityProgress)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PhaseActivityBudget)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PhaseActivityExpense)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.PhaseActivityStartDatePlanned)
             </th>
             <th>
@@ -54,20 +48,13 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
-        {
+@foreach (var item in Model) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.PhaseActivityName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.PhaseActivityProgress)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PhaseActivityBudget)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PhaseActivityExpense)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.PhaseActivityStartDatePlanned)
@@ -102,6 +89,6 @@
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
-        }
+}
     </tbody>
 </table>
