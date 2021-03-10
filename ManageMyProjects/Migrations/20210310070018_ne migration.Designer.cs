@@ -4,14 +4,16 @@ using ManageMyProjects.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ManageMyProjects.Migrations
 {
     [DbContext(typeof(ManageMyProjectDbContext))]
-    partial class ManageMyProjectDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210310070018_ne migration")]
+    partial class nemigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -196,7 +198,7 @@ namespace ManageMyProjects.Migrations
                     b.Property<byte[]>("FileContent")
                         .HasColumnType("varbinary(max)");
 
-                    b.Property<int?>("PhaseActivityBudget")
+                    b.Property<int>("PhaseActivityBudget")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("PhaseActivityEndDatePlanned")
@@ -205,7 +207,7 @@ namespace ManageMyProjects.Migrations
                     b.Property<DateTime?>("PhaseActivityEndDateRealized")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("PhaseActivityExpense")
+                    b.Property<int>("PhaseActivityExpense")
                         .HasColumnType("int");
 
                     b.Property<string>("PhaseActivityName")
@@ -254,7 +256,7 @@ namespace ManageMyProjects.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Priority");
+                    b.ToTable("Priorities");
                 });
 
             modelBuilder.Entity("ManageMyProjects.Models.ProcedureModel", b =>

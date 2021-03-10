@@ -24,7 +24,10 @@ namespace ManageMyProjects.Controllers
         {
             var manageMyProjectDbContext = _context.Phases.Include(p => p.Project).Include(p => p.Status);
             return View(await manageMyProjectDbContext.ToListAsync());
+
         }
+
+
 
         // GET: Phases/Details/5
         public async Task<IActionResult> Details(int? id)

@@ -64,7 +64,7 @@ namespace ManageMyProjects.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(IFormFile FileContent, [Bind("PhaseActivityName,PhaseActivityProgress,PhaseActivityStartDatePlanned,PhaseActivityEndDatePlanned,PhaseActivityStartDateRealized,PhaseActivityEndDateRealized,EmployeeId,PhaseId,StatusId,ProjectId,Id")] PhasesActivity phasesActivity)
+        public async Task<IActionResult> Create(IFormFile FileContent, [Bind("PhaseActivityName,PhaseActivityProgress,PhaseActivityBudget,PhaseActivityExpense,PhaseActivityStartDatePlanned,PhaseActivityEndDatePlanned,PhaseActivityStartDateRealized,PhaseActivityEndDateRealized,EmployeeId,PhaseId,StatusId,ProjectId,Id")] PhasesActivity phasesActivity)
         {
             if (ModelState.IsValid)
             {
@@ -123,7 +123,7 @@ namespace ManageMyProjects.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("PhaseActivityName,PhaseActivityProgress,PhaseActivityStartDatePlanned,PhaseActivityEndDatePlanned,PhaseActivityStartDateRealized,PhaseActivityEndDateRealized,EmployeeId,PhaseId,StatusId,ProjectId,FileContent,Id")] PhasesActivity phasesActivity)
+        public async Task<IActionResult> Edit(int id, [Bind("PhaseActivityName,PhaseActivityProgress,PhaseActivityBudget,PhaseActivityExpense,PhaseActivityStartDatePlanned,PhaseActivityEndDatePlanned,PhaseActivityStartDateRealized,PhaseActivityEndDateRealized,EmployeeId,PhaseId,StatusId,ProjectId,FileContent,Id")] PhasesActivity phasesActivity)
         {
             if (id != phasesActivity.Id)
             {

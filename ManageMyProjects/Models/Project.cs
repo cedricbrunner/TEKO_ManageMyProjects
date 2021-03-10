@@ -19,6 +19,7 @@ namespace ManageMyProjects.Models
 
         public int EmployeeId { get; set; }
         public Employee Employee { get; set; }
+
         public int PriorityId { get; set; }
         public Priority Priority { get; set; }
 

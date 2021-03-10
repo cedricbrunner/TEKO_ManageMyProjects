@@ -20,11 +20,7 @@ namespace ManageMyProjects.Data
         public DbSet<PhasesActivity> PhasesActivities { get; set; }
         public DbSet<Milestone> Milestones { get; set; }
         public DbSet<ExternalCost> ExternalCosts { get; set; }
-
-
-
-
-
+        public DbSet<Status> Status { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -39,7 +35,8 @@ namespace ManageMyProjects.Data
                 modelBuilder.Entity<PhasesActivity>().ToTable("PhasesActivity");
                 modelBuilder.Entity<Milestone>().ToTable("Milestone");
                 modelBuilder.Entity<ExternalCost>().ToTable("ExternalCost");
-
+                modelBuilder.Entity<Status>().ToTable("Status");
+               
             }
             catch(Exception e)
             {
@@ -48,11 +45,7 @@ namespace ManageMyProjects.Data
         }
 
 
-
-
-
-
-        public DbSet<ManageMyProjects.Models.Status> Status { get; set; }
+        //public DbSet<ManageMyProjects.Models.Status> Status { get; set; }
     }
 }
 

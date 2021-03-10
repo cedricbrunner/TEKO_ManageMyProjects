@@ -125,18 +125,19 @@ namespace ManageMyProjects.Data
                     }
                 }
 
-                if (!context.Milestones.Any())
+                if (!context.Priorities.Any())
                 {
-                    var externalcosts = new ExternalCost[]
+                    var priorities = new Priority[]
                     {
-                        new ExternalCost { ExternalCostTitle = "aaaatz"}
+                        new Priority { PriorityType = "Priority X"}
 
                     };
-                    foreach (ExternalCost externalcost in externalcosts)
+                    foreach (Priority priority in priorities)
                     {
-                        context.ExternalCosts.Add(externalcost);
+                        context.Priorities.Add(priority);
                     }
                 }
+
 
                 context.SaveChanges();
             }

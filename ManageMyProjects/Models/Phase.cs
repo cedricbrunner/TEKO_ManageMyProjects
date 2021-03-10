@@ -12,7 +12,6 @@ namespace ManageMyProjects.Models
     {
         public string PhaseName { get; set; }
         public DateTime PhaseReview { get; set; }
-
         public DateTime PhaseStartDatePlanned { get; set; }
         public DateTime PhaseEndDatePlanned { get; set; }
         public DateTime? PhaseStartDateRealized { get; set; }

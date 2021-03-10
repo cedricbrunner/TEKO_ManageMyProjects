@@ -4,14 +4,16 @@ using ManageMyProjects.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ManageMyProjects.Migrations
 {
     [DbContext(typeof(ManageMyProjectDbContext))]
-    partial class ManageMyProjectDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210310071535_aaat")]
+    partial class aaat
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -254,7 +256,7 @@ namespace ManageMyProjects.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Priority");
+                    b.ToTable("Priorities");
                 });
 
             modelBuilder.Entity("ManageMyProjects.Models.ProcedureModel", b =>
