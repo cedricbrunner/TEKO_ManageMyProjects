@@ -59,8 +59,7 @@ namespace ManageMyProjects.Controllers
         }
 
         // POST: Projects/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ProjectTitle,ProjectDescription,ProjectApprovalDate,ProjectStartDatePlanned,ProjectEndDatePlanned,ProjectStartDateRealized,ProjectEndDateRealized,ProjectProgress,EmployeeId,PriorityId,ProcedureModelId,StatusId,Id")] Project project)
@@ -79,28 +78,27 @@ namespace ManageMyProjects.Controllers
                         new Phase()
                         {
                             ProjectId = project.Id,
-                            PhaseName = "Initialisierung",                            
+                            PhaseName = "Initialisierung- " + project.ProjectTitle
+                            
                         },
                           new Phase()
                           {
                               ProjectId = project.Id,
-                              PhaseName = "Konzept"                              
+                              PhaseName = "Konzept-"+ project.ProjectTitle
                           },
                             new Phase()
                             {
                                 ProjectId = project.Id,
-                                PhaseName = "Realisierung"                                
+                                PhaseName = "Realisierung-"+ project.ProjectTitle
                             },
                             new Phase()
                             {
                                 ProjectId = project.Id,
-                                PhaseName = "Einführung"                    
+                                PhaseName = "Einführung-"+ project.ProjectTitle
                             }
                         }
                     );
                 }
-
-
 
                 if (procedureModel.ProcedureModelName == "V-Modell")
                 {
@@ -109,59 +107,32 @@ namespace ManageMyProjects.Controllers
 
                         {
                             ProjectId = project.Id,
-                            PhaseName = "Systemanforderungsanalyse"                            
+                            PhaseName = "Systemanforderungsanalyse-"+ project.ProjectTitle
                         },
                           new Phase()
                           {
                               ProjectId = project.Id,
-                              PhaseName = "System-Architektur und Entwurf"                            
+                              PhaseName = "System-Architektur und Entwurf-"+ project.ProjectTitle
                           },
                             new Phase()
                             {
                                 ProjectId = project.Id,
-                                PhaseName = "Software Architektur und EntwurfEntwurf"                               
+                                PhaseName = "Software Architektur und EntwurfEntwurf-"+ project.ProjectTitle
                             },
                             new Phase()
                             {
                                 ProjectId = project.Id,
-                                PhaseName = "Unit und Integrations Test"                               
+                                PhaseName = "Unit und Integrations Test-"+ project.ProjectTitle
                             },
                             new Phase()
                             {
                                 ProjectId = project.Id,
-                                PhaseName = "System Integration"                               
+                                PhaseName = "System Integration-"+ project.ProjectTitle
                             },
                             new Phase()
                             {
                                 ProjectId = project.Id,
-                                PhaseName = "Abnahme und Nutzung"                               
-                            }
-                        }
-                      );
-                }
-
-                if (procedureModel.ProcedureModelName == "Unified Process")
-                {
-                    generatedPhases.AddRange(new List<Phase>() {
-                        new Phase()
-                        {
-                            ProjectId = project.Id,
-                            PhaseName = "Inception"                           
-                        },
-                          new Phase()
-                          {
-                              ProjectId = project.Id,
-                              PhaseName = "Elaboration"                            
-                          },
-                            new Phase()
-                            {
-                                ProjectId = project.Id,
-                                PhaseName = "Construction"                               
-                            },
-                            new Phase()
-                            {
-                                ProjectId = project.Id,
-                                PhaseName = "Transition"
+                                PhaseName = "Abnahme und Nutzung-"+ project.ProjectTitle
                             }
                         }
                       );
