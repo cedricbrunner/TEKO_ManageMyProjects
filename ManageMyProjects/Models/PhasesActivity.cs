@@ -9,8 +9,10 @@ namespace ManageMyProjects.Models
     {
         public string PhaseActivityName { get; set; }
         public int PhaseActivityProgress { get; set; }
-        public int? PhaseActivityBudget { get; set; }
-        public int? PhaseActivityExpense { get; set; }
+
+        public int? Budget { get; set; }
+        public int? RealCosts { get; set; }
+        public int? Expense { get; set; }
         public DateTime PhaseActivityStartDatePlanned { get; set; }
         public DateTime PhaseActivityEndDatePlanned { get; set; }
         public DateTime? PhaseActivityStartDateRealized { get; set; }

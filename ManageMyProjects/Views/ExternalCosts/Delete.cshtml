@@ -18,12 +18,6 @@
             @Html.DisplayFor(model => model.ExternalCostTitle)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ExternalCostTyp)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ExternalCostTyp)
-        </dd>
-        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.ExternalCostAmountPlanned)
         </dt>
         <dd class = "col-sm-10">
@@ -35,6 +29,12 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.ExternalCostAmountReal)
         </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Cost)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Cost.Id)
+        </dd class>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.PhaseActivity)
         </dt>

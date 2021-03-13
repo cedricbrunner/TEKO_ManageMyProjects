@@ -19,6 +19,21 @@ namespace ManageMyProjects.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("ManageMyProjects.Models.Cost", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CostTyp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Cost");
+                });
+
             modelBuilder.Entity("ManageMyProjects.Models.Department", b =>
                 {
                     b.Property<int>("Id")
@@ -75,6 +90,9 @@ namespace ManageMyProjects.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("CostId")
+                        .HasColumnType("int");
+
                     b.Property<int>("ExternalCostAmountPlanned")
                         .HasColumnType("int");
 
@@ -84,13 +102,12 @@ namespace ManageMyProjects.Migrations
                     b.Property<string>("ExternalCostTitle")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ExternalCostTyp")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("PhaseActivityId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CostId");
 
                     b.HasIndex("PhaseActivityId");
 
@@ -190,23 +207,23 @@ namespace ManageMyProjects.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("Budget")
+                        .HasColumnType("int");
+
                     b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Expense")
                         .HasColumnType("int");
 
                     b.Property<byte[]>("FileContent")
                         .HasColumnType("varbinary(max)");
-
-                    b.Property<int?>("PhaseActivityBudget")
-                        .HasColumnType("int");
 
                     b.Property<DateTime>("PhaseActivityEndDatePlanned")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("PhaseActivityEndDateRealized")
                         .HasColumnType("datetime2");
-
-                    b.Property<int?>("PhaseActivityExpense")
-                        .HasColumnType("int");
 
                     b.Property<string>("PhaseActivityName")
                         .HasColumnType("nvarchar(max)");
@@ -226,6 +243,9 @@ namespace ManageMyProjects.Migrations
                     b.Property<int?>("ProjectId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("RealCosts")
+                        .HasColumnType("int");
+
                     b.Property<int?>("StatusId")
                         .HasColumnType("int");
 
@@ -239,7 +259,7 @@ namespace ManageMyProjects.Migrations
 
                     b.HasIndex("StatusId");
 
-                    b.ToTable("PhasesActivity");
+                    b.ToTable("PhasesActivitiy");
                 });
 
             modelBuilder.Entity("ManageMyProjects.Models.Priority", b =>
@@ -254,7 +274,7 @@ namespace ManageMyProjects.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Priority");
+                    b.ToTable("Priorities");
                 });
 
             modelBuilder.Entity("ManageMyProjects.Models.ProcedureModel", b =>
@@ -360,6 +380,12 @@ namespace ManageMyProjects.Migrations
 
             modelBuilder.Entity("ManageMyProjects.Models.ExternalCost", b =>
                 {
+                    b.HasOne("ManageMyProjects.Models.Cost", "Cost")
+                        .WithMany()
+                        .HasForeignKey("CostId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("ManageMyProjects.Models.PhasesActivity", "PhaseActivity")
                         .WithMany()
                         .HasForeignKey("PhaseActivityId")

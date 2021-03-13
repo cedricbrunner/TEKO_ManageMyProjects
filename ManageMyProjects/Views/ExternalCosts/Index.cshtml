@@ -16,13 +16,13 @@
                 @Html.DisplayNameFor(model => model.ExternalCostTitle)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ExternalCostTyp)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.ExternalCostAmountPlanned)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ExternalCostAmountReal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cost)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.PhaseActivity)
@@ -37,13 +37,13 @@
                 @Html.DisplayFor(modelItem => item.ExternalCostTitle)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ExternalCostTyp)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.ExternalCostAmountPlanned)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ExternalCostAmountReal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cost.Id)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.PhaseActivity.Id)

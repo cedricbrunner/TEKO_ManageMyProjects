@@ -3,10 +3,23 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ManageMyProjects.Migrations
 {
-    public partial class reset : Migration
+    public partial class budget_expense : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Cost",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CostTyp = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Cost", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Department",
                 columns: table => new
@@ -113,8 +126,8 @@ namespace ManageMyProjects.Migrations
                     ProjectApprovalDate = table.Column<DateTime>(nullable: false),
                     ProjectStartDatePlanned = table.Column<DateTime>(nullable: false),
                     ProjectEndDatePlanned = table.Column<DateTime>(nullable: false),
-                    ProjectStartDateRealized = table.Column<DateTime>(nullable: false),
-                    ProjectEndDateRealized = table.Column<DateTime>(nullable: false),
+                    ProjectStartDateRealized = table.Column<DateTime>(nullable: true),
+                    ProjectEndDateRealized = table.Column<DateTime>(nullable: true),
                     ProjectProgress = table.Column<int>(nullable: false),
                     EmployeeId = table.Column<int>(nullable: false),
                     PriorityId = table.Column<int>(nullable: false),
@@ -160,8 +173,8 @@ namespace ManageMyProjects.Migrations
                     PhaseReview = table.Column<DateTime>(nullable: false),
                     PhaseStartDatePlanned = table.Column<DateTime>(nullable: false),
                     PhaseEndDatePlanned = table.Column<DateTime>(nullable: false),
-                    PhaseStartDateRealized = table.Column<DateTime>(nullable: false),
-                    PhaseEndDateRealized = table.Column<DateTime>(nullable: false),
+                    PhaseStartDateRealized = table.Column<DateTime>(nullable: true),
+                    PhaseEndDateRealized = table.Column<DateTime>(nullable: true),
                     PhaseProgress = table.Column<int>(nullable: false),
                     ProjectId = table.Column<int>(nullable: true),
                     StatusId = table.Column<int>(nullable: true)
@@ -191,7 +204,7 @@ namespace ManageMyProjects.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     MilestoneName = table.Column<string>(nullable: true),
                     MilestoneDate = table.Column<DateTime>(nullable: false),
-                    ProjectId = table.Column<int>(nullable: false),
+                    ProjectId = table.Column<int>(nullable: true),
                     PhaseId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -208,42 +221,53 @@ namespace ManageMyProjects.Migrations
                         column: x => x.ProjectId,
                         principalTable: "Project",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "PhasesActivity",
+                name: "PhasesActivitiy",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PhaseActivityName = table.Column<string>(nullable: true),
                     PhaseActivityProgress = table.Column<int>(nullable: false),
+                    Budget = table.Column<int>(nullable: true),
+                    RealCosts = table.Column<int>(nullable: true),
+                    Expense = table.Column<int>(nullable: true),
                     PhaseActivityStartDatePlanned = table.Column<DateTime>(nullable: false),
                     PhaseActivityEndDatePlanned = table.Column<DateTime>(nullable: false),
-                    PhaseActivityStartDateRealized = table.Column<DateTime>(nullable: false),
-                    PhaseActivityEndDateRealized = table.Column<DateTime>(nullable: false),
+                    PhaseActivityStartDateRealized = table.Column<DateTime>(nullable: true),
+                    PhaseActivityEndDateRealized = table.Column<DateTime>(nullable: true),
                     EmployeeId = table.Column<int>(nullable: false),
                     PhaseId = table.Column<int>(nullable: true),
-                    StatusId = table.Column<int>(nullable: true)
+                    StatusId = table.Column<int>(nullable: true),
+                    ProjectId = table.Column<int>(nullable: true),
+                    FileContent = table.Column<byte[]>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PhasesActivity", x => x.Id);
+                    table.PrimaryKey("PK_PhasesActivitiy", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_PhasesActivity_Employee_EmployeeId",
+                        name: "FK_PhasesActivitiy_Employee_EmployeeId",
                         column: x => x.EmployeeId,
                         principalTable: "Employee",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_PhasesActivity_Phase_PhaseId",
+                        name: "FK_PhasesActivitiy_Phase_PhaseId",
                         column: x => x.PhaseId,
                         principalTable: "Phase",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_PhasesActivity_Status_StatusId",
+                        name: "FK_PhasesActivitiy_Project_ProjectId",
+                        column: x => x.ProjectId,
+                        principalTable: "Project",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_PhasesActivitiy_Status_StatusId",
                         column: x => x.StatusId,
                         principalTable: "Status",
                         principalColumn: "Id",
@@ -257,18 +281,24 @@ namespace ManageMyProjects.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ExternalCostTitle = table.Column<string>(nullable: true),
-                    ExternalCostTyp = table.Column<string>(nullable: true),
                     ExternalCostAmountPlanned = table.Column<int>(nullable: false),
                     ExternalCostAmountReal = table.Column<int>(nullable: false),
+                    CostId = table.Column<int>(nullable: false),
                     PhaseActivityId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ExternalCost", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ExternalCost_PhasesActivity_PhaseActivityId",
+                        name: "FK_ExternalCost_Cost_CostId",
+                        column: x => x.CostId,
+                        principalTable: "Cost",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ExternalCost_PhasesActivitiy_PhaseActivityId",
                         column: x => x.PhaseActivityId,
-                        principalTable: "PhasesActivity",
+                        principalTable: "PhasesActivitiy",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -282,6 +312,11 @@ namespace ManageMyProjects.Migrations
                 name: "IX_Employee_FunctionId",
                 table: "Employee",
                 column: "FunctionId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ExternalCost_CostId",
+                table: "ExternalCost",
+                column: "CostId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ExternalCost_PhaseActivityId",
@@ -309,18 +344,23 @@ namespace ManageMyProjects.Migrations
                 column: "StatusId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PhasesActivity_EmployeeId",
-                table: "PhasesActivity",
+                name: "IX_PhasesActivitiy_EmployeeId",
+                table: "PhasesActivitiy",
                 column: "EmployeeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PhasesActivity_PhaseId",
-                table: "PhasesActivity",
+                name: "IX_PhasesActivitiy_PhaseId",
+                table: "PhasesActivitiy",
                 column: "PhaseId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PhasesActivity_StatusId",
-                table: "PhasesActivity",
+                name: "IX_PhasesActivitiy_ProjectId",
+                table: "PhasesActivitiy",
+                column: "ProjectId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PhasesActivitiy_StatusId",
+                table: "PhasesActivitiy",
                 column: "StatusId");
 
             migrationBuilder.CreateIndex(
@@ -353,7 +393,10 @@ namespace ManageMyProjects.Migrations
                 name: "Milestone");
 
             migrationBuilder.DropTable(
-                name: "PhasesActivity");
+                name: "Cost");
+
+            migrationBuilder.DropTable(
+                name: "PhasesActivitiy");
 
             migrationBuilder.DropTable(
                 name: "Phase");

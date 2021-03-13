@@ -9,9 +9,12 @@ namespace ManageMyProjects.Models
 
     {
         public string ExternalCostTitle { get; set; }
-        public string ExternalCostTyp { get; set; }
         public int ExternalCostAmountPlanned { get; set; }
         public int ExternalCostAmountReal { get; set; }
+
+
+        public int CostId { get; set; }
+        public Cost Cost { get; set; }
 
         public int PhaseActivityId { get; set; }
         public PhasesActivity PhaseActivity { get; set; }

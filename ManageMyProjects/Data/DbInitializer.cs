@@ -103,7 +103,8 @@ namespace ManageMyProjects.Data
                 {
                     var phasesacivities = new PhasesActivity[]
                     {
-                        new PhasesActivity { PhaseActivityName = "Implementation"}
+                        new PhasesActivity { PhaseActivityName = "Implementation", 
+                                             Budget = 100}
 
                     };
                     foreach (PhasesActivity phasesactivity in phasesacivities)

@@ -21,6 +21,8 @@ namespace ManageMyProjects.Data
         public DbSet<Milestone> Milestones { get; set; }
         public DbSet<ExternalCost> ExternalCosts { get; set; }
         public DbSet<Status> Status { get; set; }
+        public DbSet<Cost> Costs { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -32,11 +34,13 @@ namespace ManageMyProjects.Data
                 modelBuilder.Entity<Function>().ToTable("Function");
                 modelBuilder.Entity<Project>().ToTable("Project");
                 modelBuilder.Entity<Phase>().ToTable("Phase");
-                modelBuilder.Entity<PhasesActivity>().ToTable("PhasesActivity");
+                modelBuilder.Entity<PhasesActivity>().ToTable("PhasesActivitiy");
                 modelBuilder.Entity<Milestone>().ToTable("Milestone");
                 modelBuilder.Entity<ExternalCost>().ToTable("ExternalCost");
                 modelBuilder.Entity<Status>().ToTable("Status");
-               
+                modelBuilder.Entity<Cost>().ToTable("Cost");
+
+
             }
             catch(Exception e)
             {

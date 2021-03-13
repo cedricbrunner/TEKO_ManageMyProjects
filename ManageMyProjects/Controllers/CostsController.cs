@@ -10,23 +10,22 @@ using ManageMyProjects.Models;
 
 namespace ManageMyProjects.Controllers
 {
-    public class ExternalCostsController : Controller
+    public class CostsController : Controller
     {
         private readonly ManageMyProjectDbContext _context;
 
-        public ExternalCostsController(ManageMyProjectDbContext context)
+        public CostsController(ManageMyProjectDbContext context)
         {
             _context = context;
         }
 
-        // GET: ExternalCosts
+        // GET: Costs
         public async Task<IActionResult> Index()
         {
-            var manageMyProjectDbContext = _context.ExternalCosts.Include(e => e.Cost).Include(e => e.PhaseActivity);
-            return View(await manageMyProjectDbContext.ToListAsync());
+            return View(await _context.Costs.ToListAsync());
         }
 
-        // GET: ExternalCosts/Details/5
+        // GET: Costs/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -34,45 +33,39 @@ namespace ManageMyProjects.Controllers
                 return NotFound();
             }
 
-            var externalCost = await _context.ExternalCosts
-                .Include(e => e.Cost)
-                .Include(e => e.PhaseActivity)
+            var cost = await _context.Costs
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (externalCost == null)
+            if (cost == null)
             {
                 return NotFound();
             }
 
-            return View(externalCost);
+            return View(cost);
         }
 
-        // GET: ExternalCosts/Create
+        // GET: Costs/Create
         public IActionResult Create()
         {
-            ViewData["CostId"] = new SelectList(_context.Costs, "Id", "Id");
-            ViewData["PhaseActivityId"] = new SelectList(_context.PhasesActivities, "Id", "Id");
             return View();
         }
 
-        // POST: ExternalCosts/Create
+        // POST: Costs/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ExternalCostTitle,ExternalCostAmountPlanned,ExternalCostAmountReal,CostId,PhaseActivityId,Id")] ExternalCost externalCost)
+        public async Task<IActionResult> Create([Bind("CostTyp,Id")] Cost cost)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(externalCost);
+                _context.Add(cost);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CostId"] = new SelectList(_context.Costs, "Id", "Id", externalCost.CostId);
-            ViewData["PhaseActivityId"] = new SelectList(_context.PhasesActivities, "Id", "Id", externalCost.PhaseActivityId);
-            return View(externalCost);
+            return View(cost);
         }
 
-        // GET: ExternalCosts/Edit/5
+        // GET: Costs/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -80,24 +73,22 @@ namespace ManageMyProjects.Controllers
                 return NotFound();
             }
 
-            var externalCost = await _context.ExternalCosts.FindAsync(id);
-            if (externalCost == null)
+            var cost = await _context.Costs.FindAsync(id);
+            if (cost == null)
             {
                 return NotFound();
             }
-            ViewData["CostId"] = new SelectList(_context.Costs, "Id", "Id", externalCost.CostId);
-            ViewData["PhaseActivityId"] = new SelectList(_context.PhasesActivities, "Id", "Id", externalCost.PhaseActivityId);
-            return View(externalCost);
+            return View(cost);
         }
 
-        // POST: ExternalCosts/Edit/5
+        // POST: Costs/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ExternalCostTitle,ExternalCostAmountPlanned,ExternalCostAmountReal,CostId,PhaseActivityId,Id")] ExternalCost externalCost)
+        public async Task<IActionResult> Edit(int id, [Bind("CostTyp,Id")] Cost cost)
         {
-            if (id != externalCost.Id)
+            if (id != cost.Id)
             {
                 return NotFound();
             }
@@ -106,12 +97,12 @@ namespace ManageMyProjects.Controllers
             {
                 try
                 {
-                    _context.Update(externalCost);
+                    _context.Update(cost);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ExternalCostExists(externalCost.Id))
+                    if (!CostExists(cost.Id))
                     {
                         return NotFound();
                     }
@@ -122,12 +113,10 @@ namespace ManageMyProjects.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CostId"] = new SelectList(_context.Costs, "Id", "Id", externalCost.CostId);
-            ViewData["PhaseActivityId"] = new SelectList(_context.PhasesActivities, "Id", "Id", externalCost.PhaseActivityId);
-            return View(externalCost);
+            return View(cost);
         }
 
-        // GET: ExternalCosts/Delete/5
+        // GET: Costs/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -135,32 +124,30 @@ namespace ManageMyProjects.Controllers
                 return NotFound();
             }
 
-            var externalCost = await _context.ExternalCosts
-                .Include(e => e.Cost)
-                .Include(e => e.PhaseActivity)
+            var cost = await _context.Costs
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (externalCost == null)
+            if (cost == null)
             {
                 return NotFound();
             }
 
-            return View(externalCost);
+            return View(cost);
         }
 
-        // POST: ExternalCosts/Delete/5
+        // POST: Costs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var externalCost = await _context.ExternalCosts.FindAsync(id);
-            _context.ExternalCosts.Remove(externalCost);
+            var cost = await _context.Costs.FindAsync(id);
+            _context.Costs.Remove(cost);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ExternalCostExists(int id)
+        private bool CostExists(int id)
         {
-            return _context.ExternalCosts.Any(e => e.Id == id);
+            return _context.Costs.Any(e => e.Id == id);
         }
     }
 }
