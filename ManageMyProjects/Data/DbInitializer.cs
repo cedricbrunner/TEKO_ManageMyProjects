@@ -15,11 +15,15 @@ namespace ManageMyProjects.Data
             {
                 context.Database.EnsureCreated();
 
+                Department dep1 = new Department { DepartmentName = "Test Department" };
+                Function func1 = new Function { FunctionTyp = "Zitronenfalter" };
+
                 if (!context.Departments.Any())
                 {
+                   
                     var departments = new Department[]
                     {
-                        new Department { DepartmentName = "Test Department" },
+                        dep1
                     };
                     foreach (Department department in departments)
                     {
@@ -28,42 +32,12 @@ namespace ManageMyProjects.Data
 
                 }
 
-                if (!context.ProcedureModels.Any())
-                {
-                    var proceduremodels = new ProcedureModel[]
-                    {
-                        new ProcedureModel { ProcedureModelName = "Hermes" },
-                    };
-                    foreach (ProcedureModel proceduremodel in proceduremodels)
-                    {
-                        context.ProcedureModels.Add(proceduremodel);
-                    }
-                }
-
-
-
-                if (!context.Employees.Any())
-                {
-                    var employees = new Employee[]
-                    {
-                        new Employee {  EmployeeFirstName = "Hans", 
-                                        EmployeeLastName = "Huber", 
-                                        EmployeeNumber = 1000, 
-                                        EmployeeWorkload = 80}
-
-                    };
-                    foreach (Employee employee in employees)
-                    {
-                        context.Employees.Add(employee);
-                    }
-                }
-
 
                 if (!context.Functions.Any())
                 {
                     var functions = new Function[]
                     {
-                        new Function { FunctionTyp = "Zitronenfalter" }
+                        func1
 
                     };
                     foreach (Function function in functions)
@@ -72,18 +46,47 @@ namespace ManageMyProjects.Data
                     }
                 }
 
-                if (!context.Projects.Any())
+                if (!context.Employees.Any())
                 {
-                    var projects = new Project[]
+                    var employees = new Employee[]
                     {
-                        new Project { ProjectTitle = "TestProject"}
+                        new Employee {  EmployeeFirstName = "Hans",
+                                        EmployeeLastName = "Huber",
+                                        EmployeeNumber = 1000,
+                                        EmployeeWorkload = 80,
+                                        Department = dep1,
+                                        Function = func1
+                        }
 
                     };
-                    foreach (Project project in projects)
+                    foreach (Employee employee in employees)
                     {
-                        context.Projects.Add(project);
+                        context.Employees.Add(employee);
                     }
+                    context.SaveChanges();
                 }
+
+                if (!context.ProcedureModels.Any())
+                {
+                    var proceduremodels = new ProcedureModel[]
+                    {
+                        new ProcedureModel { ProcedureModelName = "Hermes" },
+                        new ProcedureModel { ProcedureModelName = "V-Modell" },
+                    };
+                    foreach (ProcedureModel proceduremodel in proceduremodels)
+                    {
+                        context.ProcedureModels.Add(proceduremodel);
+                    }
+                    context.SaveChanges();
+                }
+
+
+
+              
+
+
+
+               
 
                 if (!context.Priorities.Any())
                 {
@@ -95,52 +98,27 @@ namespace ManageMyProjects.Data
                     foreach (Priority priority in prioritys)
                     {
                         context.Priorities.Add(priority);
+                    
                     }
+                    context.SaveChanges();
                 }
 
 
-                if (!context.PhasesActivities.Any())
+                if (!context.Status.Any())
                 {
-                    var phasesacivities = new PhasesActivity[]
+                    var statuses = new Status[]
                     {
-                        new PhasesActivity { PhaseActivityName = "Implementation", 
-                                             Budget = 100}
+                        new Status { StatusType = "Test"}
 
                     };
-                    foreach (PhasesActivity phasesactivity in phasesacivities)
+                    foreach (Status status in statuses)
                     {
-                        context.PhasesActivities.Add(phasesactivity);
+                        context.Status.Add(status);
                     }
+                    context.SaveChanges();
                 }
 
-                if (!context.Milestones.Any())
-                {
-                    var milestones = new Milestone[]
-                    {
-                        new Milestone { MilestoneName = "aaaatz"}
-
-                    };
-                    foreach (Milestone milestone in milestones)
-                    {
-                        context.Milestones.Add(milestone);
-                    }
-                }
-
-                if (!context.Priorities.Any())
-                {
-                    var priorities = new Priority[]
-                    {
-                        new Priority { PriorityType = "Priority X"}
-
-                    };
-                    foreach (Priority priority in priorities)
-                    {
-                        context.Priorities.Add(priority);
-                    }
-                }
-
-
-                context.SaveChanges();
+                
             }
             catch(Exception e)
             {
