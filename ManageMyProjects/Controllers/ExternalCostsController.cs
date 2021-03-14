@@ -49,14 +49,12 @@ namespace ManageMyProjects.Controllers
         // GET: ExternalCosts/Create
         public IActionResult Create()
         {
-            ViewData["CostId"] = new SelectList(_context.Costs, "Id", "Id");
-            ViewData["PhaseActivityId"] = new SelectList(_context.PhasesActivities, "Id", "Id");
+            ViewData["CostId"] = new SelectList(_context.Costs, "Id", "CostTyp");
+            ViewData["PhaseActivityId"] = new SelectList(_context.PhasesActivities, "Id", "PhaseActivityName");
             return View();
         }
 
         // POST: ExternalCosts/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ExternalCostTitle,ExternalCostAmountPlanned,ExternalCostAmountReal,CostId,PhaseActivityId,Id")] ExternalCost externalCost)
@@ -67,8 +65,8 @@ namespace ManageMyProjects.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CostId"] = new SelectList(_context.Costs, "Id", "Id", externalCost.CostId);
-            ViewData["PhaseActivityId"] = new SelectList(_context.PhasesActivities, "Id", "Id", externalCost.PhaseActivityId);
+            ViewData["CostId"] = new SelectList(_context.Costs, "Id", "CostTyp", externalCost.CostId);
+            ViewData["PhaseActivityId"] = new SelectList(_context.PhasesActivities, "Id", "PhaseActivityName", externalCost.PhaseActivityId);
             return View(externalCost);
         }
 
@@ -85,14 +83,12 @@ namespace ManageMyProjects.Controllers
             {
                 return NotFound();
             }
-            ViewData["CostId"] = new SelectList(_context.Costs, "Id", "Id", externalCost.CostId);
-            ViewData["PhaseActivityId"] = new SelectList(_context.PhasesActivities, "Id", "Id", externalCost.PhaseActivityId);
+            ViewData["CostId"] = new SelectList(_context.Costs, "Id", "CostTyp", externalCost.CostId);
+            ViewData["PhaseActivityId"] = new SelectList(_context.PhasesActivities, "Id", "PhaseActivityName", externalCost.PhaseActivityId);
             return View(externalCost);
         }
 
         // POST: ExternalCosts/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ExternalCostTitle,ExternalCostAmountPlanned,ExternalCostAmountReal,CostId,PhaseActivityId,Id")] ExternalCost externalCost)
@@ -122,8 +118,8 @@ namespace ManageMyProjects.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CostId"] = new SelectList(_context.Costs, "Id", "Id", externalCost.CostId);
-            ViewData["PhaseActivityId"] = new SelectList(_context.PhasesActivities, "Id", "Id", externalCost.PhaseActivityId);
+            ViewData["CostId"] = new SelectList(_context.Costs, "Id", "CostTyp", externalCost.CostId);
+            ViewData["PhaseActivityId"] = new SelectList(_context.PhasesActivities, "Id", "PhaseActivityName", externalCost.PhaseActivityId);
             return View(externalCost);
         }
 

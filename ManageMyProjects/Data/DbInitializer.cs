@@ -15,16 +15,27 @@ namespace ManageMyProjects.Data
             {
                 context.Database.EnsureCreated();
 
-                Department dep1 = new Department { DepartmentName = "Test Department" };
-                Function func1 = new Function { FunctionTyp = "Zitronenfalter" };
+                Department dep1 = new Department { DepartmentName = "Project Management" };
+                
+              
+
+                Function func1 = new Function { FunctionTyp = "Project Manager" };
+
 
                 if (!context.Departments.Any())
                 {
                    
                     var departments = new Department[]
                     {
-                        dep1
-                    };
+                        dep1,
+                        new Department { DepartmentName = "Concept & Design" },
+                        new Department { DepartmentName = "Development" },
+                        new Department { DepartmentName = "Marketing & Sales" },
+                        new Department { DepartmentName = "Finance & Administration" },
+                        new Department { DepartmentName = "Testing" }
+
+
+                };
                     foreach (Department department in departments)
                     {
                         context.Departments.Add(department);
@@ -37,7 +48,14 @@ namespace ManageMyProjects.Data
                 {
                     var functions = new Function[]
                     {
-                        func1
+                        func1,
+
+                    new Function { FunctionTyp = "Chef de cuisine" },
+                    new Function { FunctionTyp = "Developper" },
+                    new Function { FunctionTyp = "CEO" },
+                    new Function { FunctionTyp = "Tester" },
+                    new Function { FunctionTyp = "Project Employee" }
+
 
                     };
                     foreach (Function function in functions)
@@ -50,8 +68,8 @@ namespace ManageMyProjects.Data
                 {
                     var employees = new Employee[]
                     {
-                        new Employee {  EmployeeFirstName = "Hans",
-                                        EmployeeLastName = "Huber",
+                        new Employee {  EmployeeFirstName = "Max",
+                                        EmployeeLastName = "Mustermann",
                                         EmployeeNumber = 1000,
                                         EmployeeWorkload = 80,
                                         Department = dep1,
@@ -80,20 +98,14 @@ namespace ManageMyProjects.Data
                     context.SaveChanges();
                 }
 
-
-
-              
-
-
-
-               
-
                 if (!context.Priorities.Any())
                 {
                     var prioritys = new Priority[]
                     {
-                        new Priority { PriorityType = "Hoch"}
-
+                        new Priority { PriorityType = "Priority 1"},
+                        new Priority { PriorityType = "Priority 2"},
+                        new Priority { PriorityType = "Priority 3"}
+        
                     };
                     foreach (Priority priority in prioritys)
                     {
@@ -103,12 +115,34 @@ namespace ManageMyProjects.Data
                     context.SaveChanges();
                 }
 
+                if (!context.Costs.Any())
+                {
+                    var costs = new Cost[]
+                    {
+                        new Cost { CostTyp = "Software"},
+                        new Cost { CostTyp = "Hardware"},
+                        new Cost { CostTyp = "Service"}
+
+                    };
+                    foreach (Cost cost in costs)
+                    {
+                        context.Costs.Add(cost);
+
+                    }
+                    context.SaveChanges();
+                }
+
 
                 if (!context.Status.Any())
                 {
                     var statuses = new Status[]
                     {
-                        new Status { StatusType = "Test"}
+                        new Status { StatusType = "not launched"},
+                        new Status { StatusType = "in progress"},
+                        new Status { StatusType = "on hold"},
+                        new Status { StatusType = "completed"},
+                        new Status { StatusType = "canceled"},
+
 
                     };
                     foreach (Status status in statuses)

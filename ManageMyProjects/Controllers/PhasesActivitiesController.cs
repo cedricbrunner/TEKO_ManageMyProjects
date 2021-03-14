@@ -53,11 +53,7 @@ namespace ManageMyProjects.Controllers
         // GET: PhasesActivities/Create
         public IActionResult Create()
         {
-            //ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Id");
-            //ViewData["PhaseId"] = new SelectList(_context.Phases, "Id", "Id");
-            //ViewData["ProjectId"] = new SelectList(_context.Projects, "Id", "Id");
-            //ViewData["StatusId"] = new SelectList(_context.Status, "Id", "Id");
-
+            
             ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "EmployeeFirstName");
             ViewData["PhaseId"] = new SelectList(_context.Phases, "Id", "PhaseName");
             ViewData["StatusId"] = new SelectList(_context.Status, "Id", "StatusType");
@@ -96,7 +92,6 @@ namespace ManageMyProjects.Controllers
 
             ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "EmployeeFirstName", phasesActivity.EmployeeId);
             ViewData["PhaseId"] = new SelectList(_context.Phases, "Id", "PhaseName", phasesActivity.PhaseId);
-            //ViewData["ProjectId"] = new SelectList(_context.Projects, "Id", "ProjectTitle", phasesActivity.ProjectId);
             ViewData["StatusId"] = new SelectList(_context.Status, "Id", "StatusType", phasesActivity.StatusId);
             return View(phasesActivity);
         }
@@ -116,14 +111,11 @@ namespace ManageMyProjects.Controllers
             }
             ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "EmployeeFirstName", phasesActivity.EmployeeId);
             ViewData["PhaseId"] = new SelectList(_context.Phases, "Id", "PhaseName", phasesActivity.PhaseId);
-            //ViewData["ProjectId"] = new SelectList(_context.Projects, "Id", "ProjectTitle", phasesActivity.ProjectId);
             ViewData["StatusId"] = new SelectList(_context.Status, "Id", "StatusType", phasesActivity.StatusId);
             return View(phasesActivity);
         }
 
         // POST: PhasesActivities/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("PhaseActivityName,PhaseActivityProgress,Budget,RealCosts,Expense,PhaseActivityStartDatePlanned,PhaseActivityEndDatePlanned,PhaseActivityStartDateRealized,PhaseActivityEndDateRealized,EmployeeId,PhaseId,StatusId,ProjectId,FileContent,Id")] PhasesActivity phasesActivity)
@@ -155,7 +147,6 @@ namespace ManageMyProjects.Controllers
             }
             ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "EmployeeFirstName", phasesActivity.EmployeeId);
             ViewData["PhaseId"] = new SelectList(_context.Phases, "Id", "PhaseName", phasesActivity.PhaseId);
-            // ViewData["ProjectId"] = new SelectList(_context.Projects, "Id", "ProjectTitle", phasesActivity.ProjectId);
             ViewData["StatusId"] = new SelectList(_context.Status, "Id", "StatusType", phasesActivity.StatusId);
             return View(phasesActivity);
         }

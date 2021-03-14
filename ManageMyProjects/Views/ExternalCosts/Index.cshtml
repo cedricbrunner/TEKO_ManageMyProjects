@@ -43,10 +43,10 @@
                 @Html.DisplayFor(modelItem => item.ExternalCostAmountReal)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Cost.Id)
+                @Html.DisplayFor(modelItem => item.Cost.CostTyp)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PhaseActivity.Id)
+                @Html.DisplayFor(modelItem => item.PhaseActivity.PhaseActivityName)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
