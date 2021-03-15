@@ -13,17 +13,17 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="MilestoneName" class="control-label"></label>
+                <label>Milestone Name</label>
                 <input asp-for="MilestoneName" class="form-control" />
                 <span asp-validation-for="MilestoneName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="MilestoneDate" class="control-label"></label>
+                <label>Milestone Date</label>
                 <input asp-for="MilestoneDate" class="form-control" />
                 <span asp-validation-for="MilestoneDate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="PhaseId" class="control-label"></label>
+                <label>Projekt Phase</label>
                 <select asp-for="PhaseId" class ="form-control" asp-items="ViewBag.PhaseId"></select>
             </div>
             <div class="form-group">

@@ -13,68 +13,68 @@
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="PhaseActivityName" class="control-label"></label>
+                <label>Activity Title</label>
                 <input asp-for="PhaseActivityName" class="form-control" />
                 <span asp-validation-for="PhaseActivityName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="PhaseActivityProgress" class="control-label"></label>
+                <label>Progress</label>
                 <input asp-for="PhaseActivityProgress" class="form-control" />
                 <span asp-validation-for="PhaseActivityProgress" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Budget" class="control-label"></label>
+                <label>Budget</label>
                 <input asp-for="Budget" class="form-control" />
                 <span asp-validation-for="Budget" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="RealCosts" class="control-label"></label>
+                <label>Costs</label>
                 <input asp-for="RealCosts" class="form-control" />
                 <span asp-validation-for="RealCosts" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Expense" class="control-label"></label>
+                <label>Expense</label>
                 <input asp-for="Expense" class="form-control" />
                 <span asp-validation-for="Expense" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="PhaseActivityStartDatePlanned" class="control-label"></label>
+                <label>Activity Start Date Planned</label>
                 <input asp-for="PhaseActivityStartDatePlanned" class="form-control" />
                 <span asp-validation-for="PhaseActivityStartDatePlanned" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="PhaseActivityEndDatePlanned" class="control-label"></label>
+                <label>Activity End Date Planned</label>
                 <input asp-for="PhaseActivityEndDatePlanned" class="form-control" />
                 <span asp-validation-for="PhaseActivityEndDatePlanned" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="PhaseActivityStartDateRealized" class="control-label"></label>
+                <label>Activity Start Date Realized</label>
                 <input asp-for="PhaseActivityStartDateRealized" class="form-control" />
                 <span asp-validation-for="PhaseActivityStartDateRealized" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="PhaseActivityEndDateRealized" class="control-label"></label>
+                <label>Activity End Date Realized</label>
                 <input asp-for="PhaseActivityEndDateRealized" class="form-control" />
                 <span asp-validation-for="PhaseActivityEndDateRealized" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="EmployeeId" class="control-label"></label>
+                <label>Activity Responsible</label>
                 <select asp-for="EmployeeId" class="form-control" asp-items="ViewBag.EmployeeId"></select>
                 <span asp-validation-for="EmployeeId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="PhaseId" class="control-label"></label>
+                <label>Project Phase</label>
                 <select asp-for="PhaseId" class="form-control" asp-items="ViewBag.PhaseId"></select>
                 <span asp-validation-for="PhaseId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="StatusId" class="control-label"></label>
+                <label>Status</label>
                 <select asp-for="StatusId" class="form-control" asp-items="ViewBag.StatusId"></select>
                 <span asp-validation-for="StatusId" class="text-danger"></span>
             </div>
 
             <div class="form-group">
-                <label asp-for="FileContent" class="control-label"></label>
+                <label>File upload</label>
                 <input asp-for="FileContent" class="form-control" />
                 <span asp-validation-for="FileContent" class="text-danger"></span>
             </div>
