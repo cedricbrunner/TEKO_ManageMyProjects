@@ -22,6 +22,7 @@ namespace ManageMyProjects.Data
         public DbSet<ExternalCost> ExternalCosts { get; set; }
         public DbSet<Status> Status { get; set; }
         public DbSet<Cost> Costs { get; set; }
+        public DbSet<PersonnelResource> PersonnelResources { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -39,6 +40,7 @@ namespace ManageMyProjects.Data
                 modelBuilder.Entity<ExternalCost>().ToTable("ExternalCost");
                 modelBuilder.Entity<Status>().ToTable("Status");
                 modelBuilder.Entity<Cost>().ToTable("Cost");
+                modelBuilder.Entity<PersonnelResource>().ToTable("PersonnelResource");
 
 
             }

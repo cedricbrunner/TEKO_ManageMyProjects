@@ -17,8 +17,7 @@ namespace ManageMyProjects.Models
         public DateTime PhaseActivityEndDatePlanned { get; set; }
         public DateTime? PhaseActivityStartDateRealized { get; set; }
         public DateTime? PhaseActivityEndDateRealized { get; set; }
-        
-        
+              
         
         public int EmployeeId { get; set; }
         public Employee Employee { get; set; }
@@ -32,6 +31,6 @@ namespace ManageMyProjects.Models
         public int? ProjectId { get; set; }
         public Project Project { get; set; }
 
-        public byte[]? FileContent { get; set; }
+        public byte[] FileContent { get; set; }
     }
 }

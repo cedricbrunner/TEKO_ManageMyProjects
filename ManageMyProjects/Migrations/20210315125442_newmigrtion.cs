@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ManageMyProjects.Migrations
 {
-    public partial class budget_expense : Migration
+    public partial class newmigrtion : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -303,6 +303,36 @@ namespace ManageMyProjects.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "PersonnelResource",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ResourceTitle = table.Column<string>(nullable: true),
+                    ResourcePlanned = table.Column<int>(nullable: true),
+                    ResourceReal = table.Column<int>(nullable: true),
+                    RessourceDeviation = table.Column<string>(nullable: true),
+                    FunctionId = table.Column<int>(nullable: true),
+                    PhaseActivityId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PersonnelResource", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_PersonnelResource_Function_FunctionId",
+                        column: x => x.FunctionId,
+                        principalTable: "Function",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_PersonnelResource_PhasesActivitiy_PhaseActivityId",
+                        column: x => x.PhaseActivityId,
+                        principalTable: "PhasesActivitiy",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Employee_DepartmentId",
                 table: "Employee",
@@ -332,6 +362,16 @@ namespace ManageMyProjects.Migrations
                 name: "IX_Milestone_ProjectId",
                 table: "Milestone",
                 column: "ProjectId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PersonnelResource_FunctionId",
+                table: "PersonnelResource",
+                column: "FunctionId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PersonnelResource_PhaseActivityId",
+                table: "PersonnelResource",
+                column: "PhaseActivityId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Phase_ProjectId",
@@ -391,6 +431,9 @@ namespace ManageMyProjects.Migrations
 
             migrationBuilder.DropTable(
                 name: "Milestone");
+
+            migrationBuilder.DropTable(
+                name: "PersonnelResource");
 
             migrationBuilder.DropTable(
                 name: "Cost");

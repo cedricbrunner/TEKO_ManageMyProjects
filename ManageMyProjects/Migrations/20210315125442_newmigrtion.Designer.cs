@@ -10,14 +10,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ManageMyProjects.Migrations
 {
     [DbContext(typeof(ManageMyProjectDbContext))]
-    [Migration("20210313172934_budget_expense")]
-    partial class budget_expense
+    [Migration("20210315125442_newmigrtion")]
+    partial class newmigrtion
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.12")
+                .HasAnnotation("ProductVersion", "3.1.13")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -157,6 +157,40 @@ namespace ManageMyProjects.Migrations
                     b.HasIndex("ProjectId");
 
                     b.ToTable("Milestone");
+                });
+
+            modelBuilder.Entity("ManageMyProjects.Models.PersonnelResource", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("FunctionId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("PhaseActivityId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ResourcePlanned")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ResourceReal")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ResourceTitle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RessourceDeviation")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FunctionId");
+
+                    b.HasIndex("PhaseActivityId");
+
+                    b.ToTable("PersonnelResource");
                 });
 
             modelBuilder.Entity("ManageMyProjects.Models.Phase", b =>
@@ -406,6 +440,17 @@ namespace ManageMyProjects.Migrations
                     b.HasOne("ManageMyProjects.Models.Project", "Project")
                         .WithMany()
                         .HasForeignKey("ProjectId");
+                });
+
+            modelBuilder.Entity("ManageMyProjects.Models.PersonnelResource", b =>
+                {
+                    b.HasOne("ManageMyProjects.Models.Function", "Function")
+                        .WithMany()
+                        .HasForeignKey("FunctionId");
+
+                    b.HasOne("ManageMyProjects.Models.PhasesActivity", "PhaseActivity")
+                        .WithMany()
+                        .HasForeignKey("PhaseActivityId");
                 });
 
             modelBuilder.Entity("ManageMyProjects.Models.Phase", b =>

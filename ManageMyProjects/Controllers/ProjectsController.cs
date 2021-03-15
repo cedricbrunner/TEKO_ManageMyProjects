@@ -78,23 +78,23 @@ namespace ManageMyProjects.Controllers
                         new Phase()
                         {
                             ProjectId = project.Id,
-                            PhaseName = "Initialisierung- " + project.ProjectTitle
+                            PhaseName = "Initialisierung - " + project.ProjectTitle
                             
                         },
                           new Phase()
                           {
                               ProjectId = project.Id,
-                              PhaseName = "Konzept-"+ project.ProjectTitle
+                              PhaseName = "Konzept - "+ project.ProjectTitle
                           },
                             new Phase()
                             {
                                 ProjectId = project.Id,
-                                PhaseName = "Realisierung-"+ project.ProjectTitle
+                                PhaseName = "Realisierung - "+ project.ProjectTitle
                             },
                             new Phase()
                             {
                                 ProjectId = project.Id,
-                                PhaseName = "Einführung-"+ project.ProjectTitle
+                                PhaseName = "Einführung - "+ project.ProjectTitle
                             }
                         }
                     );
@@ -107,32 +107,32 @@ namespace ManageMyProjects.Controllers
 
                         {
                             ProjectId = project.Id,
-                            PhaseName = "Systemanforderungsanalyse-"+ project.ProjectTitle
+                            PhaseName = "Systemanforderungsanalyse - "+ project.ProjectTitle
                         },
                           new Phase()
                           {
                               ProjectId = project.Id,
-                              PhaseName = "System-Architektur und Entwurf-"+ project.ProjectTitle
+                              PhaseName = "System Architektur und Entwurf - "+ project.ProjectTitle
                           },
                             new Phase()
                             {
                                 ProjectId = project.Id,
-                                PhaseName = "Software Architektur und EntwurfEntwurf-"+ project.ProjectTitle
+                                PhaseName = "Software Architektur und Entwurf - "+ project.ProjectTitle
                             },
                             new Phase()
                             {
                                 ProjectId = project.Id,
-                                PhaseName = "Unit und Integrations Test-"+ project.ProjectTitle
+                                PhaseName = "Unit und Integrations Test - "+ project.ProjectTitle
                             },
                             new Phase()
                             {
                                 ProjectId = project.Id,
-                                PhaseName = "System Integration-"+ project.ProjectTitle
+                                PhaseName = "System Integration - "+ project.ProjectTitle
                             },
                             new Phase()
                             {
                                 ProjectId = project.Id,
-                                PhaseName = "Abnahme und Nutzung-"+ project.ProjectTitle
+                                PhaseName = "Abnahme und Nutzung - "+ project.ProjectTitle
                             }
                         }
                       );
@@ -201,8 +201,6 @@ namespace ManageMyProjects.Controllers
 
       
         // POST: Projects/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ProjectTitle,ProjectDescription,ProjectApprovalDate,ProjectStartDatePlanned,ProjectEndDatePlanned,ProjectStartDateRealized,ProjectEndDateRealized,ProjectProgress,EmployeeId,PriorityId,ProcedureModelId,StatusId,Id")] Project project)
@@ -270,7 +268,9 @@ namespace ManageMyProjects.Controllers
             _context.Projects.Remove(project);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+
         }
+
 
         private bool ProjectExists(int id)
         {
