@@ -1,4 +1,11 @@
-﻿using System;
+﻿/*
+ * Employees Controller 
+ * 
+ * C.Brunner
+ * 03.2021
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -55,8 +62,7 @@ namespace ManageMyProjects.Controllers
         }
 
         // POST: Employees/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("EmployeeFirstName,EmployeeLastName,EmployeeNumber,EmployeeWorkload,FunctionId,DepartmentId,Id")] Employee employee)

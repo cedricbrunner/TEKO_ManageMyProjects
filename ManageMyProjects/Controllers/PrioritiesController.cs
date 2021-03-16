@@ -1,4 +1,11 @@
-﻿using System;
+﻿/*
+ * Priorities Controller 
+ * 
+ * C.Brunner
+ * 03.2021
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -50,8 +57,7 @@ namespace ManageMyProjects.Controllers
         }
 
         // POST: Priorities/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("PriorityType,Id")] Priority priority)
@@ -82,8 +88,7 @@ namespace ManageMyProjects.Controllers
         }
 
         // POST: Priorities/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("PriorityType,Id")] Priority priority)

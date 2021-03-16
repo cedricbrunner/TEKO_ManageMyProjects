@@ -1,4 +1,11 @@
-﻿using System;
+﻿/*
+ * Projects  Controller 
+ * 
+ * C.Brunner
+ * 03.2021
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -72,6 +79,8 @@ namespace ManageMyProjects.Controllers
                 ProcedureModel procedureModel = _context.ProcedureModels.ToList().Find(_procedureModel => _procedureModel.Id == project.ProcedureModelId);
 
                 List<Phase> generatedPhases = new List<Phase>();
+
+                // Hermes Create Phase
                 if (procedureModel.ProcedureModelName == "Hermes")
                 {
                     generatedPhases.AddRange(new List<Phase>() {
@@ -100,6 +109,7 @@ namespace ManageMyProjects.Controllers
                     );
                 }
 
+                // V-Modell Create Phase
                 if (procedureModel.ProcedureModelName == "V-Modell")
                 {
                     generatedPhases.AddRange(new List<Phase>() {
@@ -138,6 +148,7 @@ namespace ManageMyProjects.Controllers
                       );
                 }
 
+                //  Create Milestones
                 if (generatedPhases.Count > 0)
                 {
                     _context.AddRange(generatedPhases);
